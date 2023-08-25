@@ -1,0 +1,14 @@
+.kuc-dropdown {
+  margin-left: 30px;
+}
+
+.kuc-text {
+  --kuc-text-input-width: 60px;
+  margin-left: 30px;
+}
+
+.kuc-button {
+  --kuc-button-width: 90px;
+  margin-left: 30px;
+  margin-top: 25px;
+}
