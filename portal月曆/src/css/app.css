@@ -1,0 +1,91 @@
+.main-content {
+  width: 100%;
+  height: auto;
+}
+
+.left-content {
+  width: 70%;
+  float: left;
+}
+
+.right-content {
+  width: 30%;
+  float: left;
+}
+
+#calendars {
+  font-size: 65%;
+}
+
+.left-container {
+  width: auto;
+  height: auto;
+  background-color: #fff;
+  margin: 16px 8px 16px 16px;
+  letter-spacing: 0.04em;
+}
+
+.right-container {
+  width: auto;
+  height: auto;
+  background-color: #fff;
+  margin: 16px 16px 16px 8px;
+  letter-spacing: 0.04em;
+}
+
+.custom-container-header-calender {
+  position: relative;
+  background-image: url('https://static.cybozu.com/contents/k/image/icon/app/calendar.png');
+  background-position: left top;
+  background-repeat: no-repeat;
+  height: 56px;
+  line-height: 56px;
+  font-size: 20px;
+  padding: 0 72px 0 80px;
+  border-bottom: 1px solid #e3e7e8;
+}
+
+.custom-container-header-mail {
+  background-image: url('https://static.cybozu.com/contents/k/image/icon/app/mail.png');
+  background-position: left top;
+  background-repeat: no-repeat;
+  height: 56px;
+  line-height: 56px;
+  font-size: 20px;
+  padding: 0 72px 0 80px;
+  border-bottom: 1px solid #e3e7e8;
+}
+
+.custom-container-body-calender {
+  text-align: center;
+  height: 490px;
+  font-size: 20px;
+  background-color: #f3f3f3;
+  overflow-y: scroll;
+}
+
+.custom-container-body-mail {
+  height: 490px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.custom-container-body-mail table {
+  width: 100%;
+  height: 300px;
+}
+
+.custom-container-body-mail table thead tr {
+  height: 40px;
+  background-color: #f7f9fa;
+  border-bottom: 1px solid #e3e7e8;
+}
+
+.custom-container-body-mail table tbody tr {
+  height: 52px;
+  cursor: pointer;
+}
+
+.custom-container-body-mail table tbody tr:nth-child(even) {
+  background-color: #f2f9fe;
+}

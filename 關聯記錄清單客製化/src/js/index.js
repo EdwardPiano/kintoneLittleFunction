@@ -16,6 +16,10 @@ const relatedTableColumns = () => {
       field: 'year',
     },
     {
+      title: '預算編列分類',
+      field: 'budgetClass',
+    },
+    {
       title: '通路',
       field: 'road',
     },
@@ -52,6 +56,7 @@ const getRelatedData = async (event) => {
     const table = budgetRecord['預算表格'].value
     const budgetYaer = budgetRecord['年'].value
     const budgetRoad = budgetRecord['通路'].value
+    const budgetClass = budgetRecord['預算編列分類'].value
     // 過濾每筆資料中的table，找出同[店櫃代號]的資料
     const targetRow = table.filter((row) => {
       const {
@@ -67,29 +72,38 @@ const getRelatedData = async (event) => {
       // 將年份資料加入(因為本來年在表格外)
       targetRow[0].value['年'] = { value: budgetYaer }
       targetRow[0].value['通路'] = { value: budgetRoad }
+      targetRow[0].value['預算編列分類'] = { value: budgetClass }
       storeData.push(targetRow[0].value)
     }
   })
+
+  // 將數字加上進位符
+  const changeMoneyStr = (str) => {
+    const number = Number(str)
+    const formattedNumber = number.toLocaleString()
+    return formattedNumber
+  }
 
   // 將資料整理成[關聯紀錄清單]的格式
   const relatedTableData = storeData.map((sotreRecord) => {
     return {
       year: sotreRecord['年'].value,
+      budgetClass: sotreRecord['預算編列分類'].value,
       road: sotreRecord['通路'].value,
       storeCode: sotreRecord['店櫃'].value,
-      _1month: sotreRecord['_1月'].value,
-      _2month: sotreRecord['_2月'].value,
-      _3month: sotreRecord['_3月'].value,
-      _4month: sotreRecord['_4月'].value,
-      _5month: sotreRecord['_5月'].value,
-      _6month: sotreRecord['_6月'].value,
-      _7month: sotreRecord['_7月'].value,
-      _8month: sotreRecord['_8月'].value,
-      _9month: sotreRecord['_9月'].value,
-      _10month: sotreRecord['_10月'].value,
-      _11month: sotreRecord['_11月'].value,
-      _12month: sotreRecord['_12月'].value,
-      total: sotreRecord['合計'].value,
+      _1month: changeMoneyStr(sotreRecord['_1月'].value),
+      _2month: changeMoneyStr(sotreRecord['_2月'].value),
+      _3month: changeMoneyStr(sotreRecord['_3月'].value),
+      _4month: changeMoneyStr(sotreRecord['_4月'].value),
+      _5month: changeMoneyStr(sotreRecord['_5月'].value),
+      _6month: changeMoneyStr(sotreRecord['_6月'].value),
+      _7month: changeMoneyStr(sotreRecord['_7月'].value),
+      _8month: changeMoneyStr(sotreRecord['_8月'].value),
+      _9month: changeMoneyStr(sotreRecord['_9月'].value),
+      _10month: changeMoneyStr(sotreRecord['_10月'].value),
+      _11month: changeMoneyStr(sotreRecord['_11月'].value),
+      _12month: changeMoneyStr(sotreRecord['_12月'].value),
+      total: changeMoneyStr(sotreRecord['合計'].value),
     }
   })
   return relatedTableData

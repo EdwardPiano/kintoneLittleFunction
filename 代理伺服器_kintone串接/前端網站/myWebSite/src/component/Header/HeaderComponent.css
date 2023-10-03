@@ -1,0 +1,12 @@
+.header-text-left {
+  font-size: 33px; /* 設定你想要的文字大小 */
+  text-align: center; /* 設定文字置中 */
+  color: #0d0a07;
+}
+
+.header-text-right {
+  font-size: 20px; /* 設定你想要的文字大小 */
+  text-align: center; /* 設定文字置中 */
+  color: #201912;
+  margin-right: 10px;
+}
