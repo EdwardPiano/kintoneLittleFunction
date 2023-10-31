@@ -7,7 +7,9 @@ module.exports = {
   },
   extends: [
     '@cybozu/eslint-config/globals/kintone',
-    'airbnb-base',
+    'plugin:react/recommended',
+    'airbnb',
+    'airbnb/hooks',
     'plugin:prettier/recommended',
   ],
   parserOptions: {
@@ -15,7 +17,11 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
+    'react',
   ],
   rules: {
+    'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.js'] }],
+    'func-names': ['error', 'as-needed'],
+    'react/prop-types': 'off',
   },
 };

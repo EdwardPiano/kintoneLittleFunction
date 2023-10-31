@@ -40,7 +40,7 @@ const output = resolve(__dirname, '../dist')
 
 module.exports = {
   entry: {
-    app: resolve(source, 'index.js'),
+    BarCodeScanner: resolve(source, 'js/App.js'),
   },
   output: {
     filename: `js/[name].js`,

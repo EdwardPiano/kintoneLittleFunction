@@ -1,0 +1,14 @@
+/* stylelint-disable selector-class-pattern */
+
+.kuc-button-1-13-0__button {
+  /* display: grid; */
+  align-items: center;
+  align-content: center;
+  font-size: var(--kuc-button-font-size, 10px);
+  width: var(--kuc-button-width, 60px);
+  height: var(--kuc-button-height, 40px);
+  min-width: var(--kuc-button-width, 20px);
+  padding: 0;
+  user-select: none;
+  white-space: nowrap;
+}

@@ -40,7 +40,7 @@ const output = resolve(__dirname, '../dist')
 
 module.exports = {
   entry: {
-    exportPDF: resolve(source, 'js/index.js'),
+    exportPDF: resolve(source, 'index.js'),
   },
   output: {
     filename: `js/[name].js`,
@@ -48,7 +48,7 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: ['.jsx', '.js', '.json'],
   },
   externals: {
   },
@@ -62,7 +62,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         options: { cacheDirectory: true },
         exclude: /node_modules/,

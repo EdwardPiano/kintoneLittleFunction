@@ -1,10 +1,10 @@
 {
   "name": "匯出PDF",
   "version": "1.0.0",
-  "description": "PDF export",
+  "description": "",
   "scripts": {
     "format": "prettier --write src",
-    "lint": "eslint --fix -c .eslintrc.js --ignore-path .eslintignore --ext .js src && stylelint --config .stylelintrc.js src/**/*.css",
+    "lint": "eslint --fix -c .eslintrc.js --ignore-path .eslintignore --ext .jsx,.js src && stylelint --config .stylelintrc.js src/**/*.css",
     "start": "cross-env NODE_ENV=development node ./scripts/server.js",
     "debug": "cross-env NODE_ENV=debug node ./scripts/debug.js",
     "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.prod.js"
@@ -21,6 +21,7 @@
     "@babel/plugin-proposal-class-properties": "^7.16.0",
     "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
     "@cybozu/eslint-config": "^16.0.1",
     "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
@@ -30,7 +31,10 @@
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "kintone-dev-tools": "^1.0.9",
     "mini-css-extract-plugin": "^2.4.5",
     "postcss": "^8.4.4",
@@ -51,10 +55,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.3",
-    "@kintone/rest-api-client": "^4.1.0",
+    "@kintone/rest-api-client": "^5.0.1",
     "@pdf-lib/fontkit": "^1.1.1",
-    "kintone-ui-component": "^1.12.0",
+    "antd": "^5.10.1",
     "pdf-lib": "^1.17.1",
-    "sweetalert2": "^11.7.27"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

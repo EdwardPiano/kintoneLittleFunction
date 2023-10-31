@@ -7,10 +7,10 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 module.exports = merge(common, {
   mode: 'production',
   plugins: [
-    // new MiniCssExtractPlugin({
-    //   filename: 'css/[name].css',
-    //   chunkFilename: 'css/[name].css',
-    // }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name].css',
+    }),
   ],
   optimization: {
     minimizer: [

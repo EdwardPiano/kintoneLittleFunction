@@ -17,7 +17,7 @@ const AnnouncementComponent = ({selectedKey}) => {
           },
         };
         const resp = await axios.get(
-          'http://localhost:5173/getAnnouncePics',
+          'http://54.234.56.197:5173/getAnnouncePics',
           params
         );
         console.log('公告資料', resp);
