@@ -13,6 +13,10 @@ class Constants {
   static REPAIRE_APP_ID = 1786 //外部串接_報修單 APPID
 
   static REPAIRE_APP_TOKEN = 'STWcQNSttWPNKv7oz3Hy9FZgtltgGJaraTFPpN2E'//外部串接_報修單 TOKEN
+
+  static DEVICE_APP_ID = 2023 //外部串接_購買設備 APPID
+
+  static DEVICE_APP_TOKEN = '7XMxTOjGHYlnE5WpSzr5i2FNkonA1YamUpEua2UA'//外部串接_購買設備 TOKEN
 }
 
 module.exports = Constants 

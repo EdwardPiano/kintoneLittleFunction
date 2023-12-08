@@ -17,7 +17,7 @@ function LoginComponent({onLogin}) {
         message.error('登入失敗!');
         return;
       }
-      const response = await axios.get('http://54.234.56.197:5173/login', {
+      const response = await axios.get('http://localhost:5173/login', {
         params: {
           username: username,
           password: password,

@@ -1,3 +1,4 @@
+/* stylelint-disable selector-id-pattern */
 /* stylelint-disable selector-class-pattern */
 
 .kuc-button-1-13-0__button {
@@ -11,4 +12,53 @@
   padding: 0;
   user-select: none;
   white-space: nowrap;
+}
+
+#kuc_text {
+  width: 100px;
+  min-width: 100px;
+}
+
+#kuc_dropdown {
+  width: 100px;
+  min-width: 100px;
+}
+
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+  display: none;
+}
+
+/* 按鈕的基本樣式 */
+.dialog button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px; /* 圓角 */
+}
+
+/* 取消按鈕的背景顏色 */
+.dialog .cancel {
+  background-color: red;
+}
+
+/* 按鈕容器的樣式 */
+.dialog .button-container {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }

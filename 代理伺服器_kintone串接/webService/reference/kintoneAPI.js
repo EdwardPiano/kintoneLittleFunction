@@ -3,7 +3,7 @@ const Constants = require('../constants/constants')
 
 const client = new KintoneRestAPIClient({
   baseUrl: Constants.DOMAIN,
-  auth: { apiToken: `${Constants.Announce_APP_TOKEN},${Constants.USER_APP_TOKEN},${Constants.REPAIRE_APP_TOKEN}` }
+  auth: { apiToken: `${Constants.Announce_APP_TOKEN},${Constants.USER_APP_TOKEN},${Constants.REPAIRE_APP_TOKEN},${Constants.DEVICE_APP_TOKEN}` }
 });
 
 class KintoneAPI {

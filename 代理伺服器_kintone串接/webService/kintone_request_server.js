@@ -27,7 +27,7 @@ app.post('/createRepair', async (req, res) => {
 //獲取報修數據
 app.get('/getRepairData', async (req, res) => {
   try {
-    console.log('req.query', req.query);
+    console.log('req.query', req.query); z
     const resp = await KintoneAPI.getRecords(Constants.REPAIRE_APP_ID, `登記人帳號 =  "${req.query['帳號']}"`)
     res.json(resp);
   } catch (error) {
@@ -41,6 +41,19 @@ app.get('/getAnnouncePics', async (req, res) => {
   try {
     console.log('req.query', req.query['query']);
     const resp = await KintoneAPI.getRecords(Constants.Announce_APP_ID, `${req.query['query']}`)
+    res.json(resp);
+  } catch (error) {
+    console.error('Failed to fetch data:', error);
+    res.status(500).json({ error: error.toString() });
+  }
+});
+
+//獲取購買設備清單
+app.get('/getBuyDevice', async (req, res) => {
+  try {
+    console.log('req.query', req.query);
+    console.log(Constants.DEVICE_APP_ID, `設備管理者 =  "${req.query['設備管理者']}"`);
+    const resp = await KintoneAPI.getRecords(Constants.DEVICE_APP_ID, `設備管理者 =  "${req.query['設備管理者']}"`)
     res.json(resp);
   } catch (error) {
     console.error('Failed to fetch data:', error);

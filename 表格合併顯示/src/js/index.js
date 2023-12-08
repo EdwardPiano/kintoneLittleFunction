@@ -3,57 +3,163 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-underscore-dangle */
-import { Table, Text, DatePicker, Dropdown } from 'kintone-ui-component'
+import { Table, Text, TextArea, DatePicker, Dropdown } from 'kintone-ui-component'
 import '../css/index.css'
+import { createLookupWindow } from './createUI'
 
 const setMergeTable = () => {
-  const renderBsTrip = (cellData, rowIndex) => {
-    console.log('rowIndex', rowIndex)
+  // 模板
+  const renderText = (cellData, disabled, keydownEvent) => {
     const text = new Text({
-      label: '單號',
-      value: '',
+      value: cellData,
       textAlign: 'left',
       className: 'options-class',
-      id: 'options-id',
-      disabled: false,
+      id: 'kuc_text',
+      disabled,
     })
-    text.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        console.log(text.value)
-      }
-    })
+    if (keydownEvent) {
+      text.addEventListener('keydown', keydownEvent)
+    }
+
     return text
   }
 
-  const renderCountry = (cellData) => {
-    const renderSubTable = (cellDataSubTable) => {
-      const dropdown = new Dropdown({
-        items: [
-          { label: 'Japan', value: 'japan' },
-          { label: 'Viet Nam', value: 'vietnam' },
-        ],
-        value: cellDataSubTable,
+  const renderDropdown = (items) => {
+    const dropdown = new Dropdown({
+      items,
+      className: 'options-class',
+      id: 'kuc_dropdown',
+      visible: true,
+      disabled: false,
+    })
+    return dropdown
+  }
+  // 實際欄位
+  const renderPreApForm = (cellData) => {
+    return renderText(cellData, false, (event) => {
+      if (event.key === 'Enter') {
+        const td = event.target.closest('td')
+        const { rowIndex } = td.parentNode // 获取行位置
+        const { cellIndex } = td
+        console.log(`Row: ${rowIndex}, Cell: ${cellIndex}`)
+        console.log(event.target.value)
+        createLookupWindow()
+      }
+    })
+  }
+
+  const renderEstTotalCost = (cellData) => {
+    return renderText(cellData, true)
+  }
+
+  const renderTotalAmountPaid = (cellData) => {
+    return renderText(cellData, true)
+  }
+
+  const renderTotalApFee = (cellData) => {
+    return renderText(cellData, true)
+  }
+
+  const renderReasonCost = (cellData) => {
+    const textarea = new TextArea({
+      className: 'options-class',
+      id: 'options-id',
+      visible: true,
+      disabled: false,
+    })
+    return textarea
+  }
+
+  const renderInnerTable = (cellData) => {
+    const renderDateExpenseIncurred = () => {
+      const datePicker = new DatePicker({
+        language: 'auto',
+        className: 'options-class',
+        id: 'options-id',
+        visible: true,
+        disabled: false,
       })
-      return dropdown
+      return datePicker
+    }
+
+    const renderOptions = () => {
+      return renderDropdown([
+        { label: '交通', value: '交通' },
+        { label: '住宿', value: '住宿' },
+        { label: '每日津貼', value: '每日津貼' },
+        { label: '雜費', value: '雜費' },
+      ])
+    }
+
+    const renderCurrency = () => {
+      return renderDropdown([
+        { label: 'NTD', value: 'NTD' },
+        { label: 'USD', value: 'USD' },
+        { label: 'JPY', value: 'JPY' },
+        { label: 'EUR', value: 'EUR' },
+      ])
+    }
+
+    const renderOrgCurrency = (cellData) => {
+      return renderText(cellData, false)
+    }
+
+    const renderExchangeRate = (cellData) => {
+      return renderText(cellData, false)
+    }
+
+    const renderTaiwanDollars = (cellData) => {
+      return renderText(cellData, true)
     }
 
     const columnsSubTable = [
       {
-        title: 'Sub Table',
-        field: 'dropdown',
-        render: renderSubTable,
+        title: '費用發生日期',
+        field: 'DateExpenseIncurred',
+        render: renderDateExpenseIncurred,
+      },
+      {
+        title: '項目',
+        field: 'Options',
+        render: renderOptions,
+      },
+      {
+        title: '幣值',
+        field: 'Currency',
+        render: renderCurrency,
+      },
+      {
+        title: '原幣金額',
+        field: 'OrgCurrency',
+        render: renderOrgCurrency,
+      },
+      {
+        title: '匯率',
+        field: 'ExchangeRate',
+        render: renderExchangeRate,
+      },
+      {
+        title: '台幣金額',
+        field: 'TaiwanDollars',
+        render: renderTaiwanDollars,
       },
     ]
 
-    const dataSubTable = []
-    for (let i = 0; i < cellData.split(',').length; i++) {
-      dataSubTable.push({ dropdown: cellData.split(',')[i] })
-    }
+    const dataSubTable = [
+      {
+        TaiwanDollars: '10000',
+      },
+      {
+        TaiwanDollars: '30000',
+      },
+    ]
+    // for (let i = 0; i < cellData.split(',').length; i++) {
+    //   dataSubTable.push({ dropdown: cellData.split(',')[i] })
+    // }
     const subTable = new Table({
       columns: columnsSubTable,
       data: dataSubTable,
     })
-
     subTable.addEventListener('change', (subTableEvent) => {
       const _dataSubTable = subTableEvent.detail.data
       let countries = ''
@@ -71,26 +177,47 @@ const setMergeTable = () => {
   const columns = [
     {
       title: '事前申請單',
-      field: 'BsTrip',
-      render: renderBsTrip,
+      field: 'PreApForm',
+      render: renderPreApForm,
     },
     {
-      title: 'Country',
-      field: 'country',
-      render: renderCountry,
+      title: '預估費用總計',
+      field: 'EstTotalCost',
+      render: renderEstTotalCost,
+    },
+    {
+      title: '已付費用總計',
+      field: 'TotalAmountPaid',
+      render: renderTotalAmountPaid,
+    },
+    {
+      title: '申請費用總計',
+      field: 'TotalApFee',
+      render: renderTotalApFee,
+    },
+    {
+      title: '費用超支原因',
+      field: 'ReasonCost',
+      render: renderReasonCost,
+    },
+    {
+      title: '詳細',
+      field: 'Detail',
+      render: renderInnerTable,
     },
   ]
 
   const data = [
     {
-      country: 'japan',
+      PreApForm: '17',
+      EstTotalCost: '7334',
+      TotalAmountPaid: '5334',
+      TotalApFee: '40000',
+      Detail: '',
     },
   ]
 
   const table = new Table({ columns, data })
-  // table.addEventListener('change', (event) => {
-  //   console.log(event)
-  // })
   const mergeTableSpace = kintone.app.record.getSpaceElement('cusTableSpace')
   if (!mergeTableSpace) {
     return
